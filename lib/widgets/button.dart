@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class CustomButton extends StatelessWidget {
   VoidCallback? onPressed;
-  CustomButton({super.key, this.onPressed});
+  String str;
+  CustomButton({super.key, this.onPressed, this.str = "Get Started"});
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +21,10 @@ class CustomButton extends StatelessWidget {
           color: const Color.fromARGB(255, 0, 170, 255),
           borderRadius: BorderRadius.circular(23),
         ),
-        child: const Center(
+        child: Center(
             child: Text(
-          "Get Started",
-          style: TextStyle(
+          str,
+          style: const TextStyle(
             color: Colors.white,
             fontSize: 16,
             fontFamily: "Poppins",
