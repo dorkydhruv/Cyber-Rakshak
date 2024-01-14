@@ -1,9 +1,22 @@
 import 'package:flutter/material.dart';
 
-Widget buildTextField({double top = 10, required String hintText}) {
+Widget buildTextField(
+    {double top = 10,
+    double h = 50,
+    double left = 20,
+    double right = 20,
+    double bottom = 20,
+    required String hintText}) {
   return Container(
-    margin: EdgeInsets.only(top: top, left: 20, right: 20, bottom: 20),
+    height: h,
+    margin: EdgeInsets.only(
+      top: top,
+      left: left,
+      right: right,
+      bottom: bottom,
+    ),
     child: TextField(
+      // cursorHeight: 20,
       obscureText: hintText == "Password" ? true : false,
       decoration: InputDecoration(
         hintText: hintText,
