@@ -1,5 +1,6 @@
 import 'package:cyber_rakshak/constants.dart';
 import 'package:cyber_rakshak/screens/services/criminal_record.dart';
+import 'package:cyber_rakshak/screens/services/investigation.dart';
 import 'package:cyber_rakshak/screens/services/new_case.dart';
 import 'package:cyber_rakshak/widgets/containerPage.dart';
 import 'package:flutter/material.dart';
@@ -122,7 +123,12 @@ class DashBoard extends StatelessWidget {
                     onTap: () => Navigator.of(context).push(MaterialPageRoute(
                         builder: (_) => const CriminalRecord())),
                   ),
-                  ContainerPage(img: "invest", str: "Investigation"),
+                  ContainerPage(
+                    img: "invest",
+                    str: "Investigation",
+                    onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                        builder: (_) => const Investigation())),
+                  ),
                   ContainerPage(img: "evidence", str: "Evidence Room"),
                   ContainerPage(img: "completeFile", str: "Complete File"),
                 ],

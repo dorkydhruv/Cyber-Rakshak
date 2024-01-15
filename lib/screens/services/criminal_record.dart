@@ -50,6 +50,7 @@ class CriminalRecord extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.33,
               decoration: const BoxDecoration(
                 image: DecorationImage(
+                  opacity: 0.4,
                   image: AssetImage("assets/record.png"),
                   fit: BoxFit.fill,
                 ),
@@ -70,6 +71,7 @@ class CriminalRecord extends StatelessWidget {
               margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
               child: CustomButton(
                 str: "Find it",
+                onPressed: () {},
               ),
             )
           ],
