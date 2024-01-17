@@ -83,8 +83,26 @@ class _PredictionsState extends State<Predictions> {
                         topRight: Radius.circular(60))),
                 child: ListView.builder(
                   itemBuilder: (c, index) {
-                    return ListTile(
-                      title: Text(widget.lst[index]),
+                    return Container(
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                blurRadius: 10,
+                                offset: const Offset(0, 3))
+                          ]),
+                      margin: EdgeInsets.all(8),
+                      padding: EdgeInsets.only(top: 10),
+                      child: ListTile(
+                        title: Text(widget.lst[index],
+                            style: TextStyle(
+                                fontFamily: "Poppins",
+                                fontSize: 20,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold)),
+                      ),
                     );
                   },
                   itemCount: widget.lst.length,
