@@ -17,13 +17,13 @@ class GetStarted extends StatelessWidget {
           Center(
             child: Image.asset(
               "assets/open.png",
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.5,
+              // width: MediaQuery.of(context).size.width,
+              // height: MediaQuery.of(context).size.height * 0.5,
             ),
           ),
           const ListTile(
             dense: true,
-            visualDensity: VisualDensity(vertical: -4),
+            // visualDensity: VisualDensity(vertical: -5.0),
             title: Text(
               "Cyber Rakshak",
               textAlign: TextAlign.center,
@@ -38,7 +38,8 @@ class GetStarted extends StatelessWidget {
                 textAlign: TextAlign.end,
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 16,
+                  height: 0.3,
+                  fontSize: 14,
                   fontFamily: "Poppins",
                 )),
           ),

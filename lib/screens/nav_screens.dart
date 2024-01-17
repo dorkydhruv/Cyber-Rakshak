@@ -11,7 +11,7 @@ class NavScreen extends StatelessWidget {
         body: PageView(
       onPageChanged: (val) async {
         if (val == 2) {
-          await Future.delayed(const Duration(seconds: 6));
+          await Future.delayed(const Duration(seconds: 3));
           // ignore: use_build_context_synchronously
           Navigator.pushAndRemoveUntil(
               context,

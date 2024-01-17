@@ -1,9 +1,10 @@
 import 'package:cyber_rakshak/constants.dart';
-import 'package:cyber_rakshak/screens/services/criminal_record.dart';
-import 'package:cyber_rakshak/screens/services/investigation.dart';
+import 'package:cyber_rakshak/screens/services/criminal_record/criminal_record.dart';
+import 'package:cyber_rakshak/screens/services/investigation/investigation.dart';
 import 'package:cyber_rakshak/screens/services/new_case.dart';
 import 'package:cyber_rakshak/widgets/containerPage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class DashBoard extends StatelessWidget {
   const DashBoard({super.key});
@@ -37,17 +38,16 @@ class DashBoard extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               ),
-              trailing: Container(
+              trailing: SizedBox(
                 width: MediaQuery.of(context).size.width * 0.32,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.notifications_none_outlined,
-                        size: 35,
-                      ),
+                      onPressed: () {
+                        showModal(context);
+                      },
+                      icon: SvgPicture.asset("assets/back.svg"),
                     ),
                     const CircleAvatar(
                       radius: 25,
@@ -134,7 +134,105 @@ class DashBoard extends StatelessWidget {
                 ],
               ),
             ),
+            Container(
+                margin: const EdgeInsets.all(30),
+                height: MediaQuery.of(context).size.height * 0.15,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 25, 25, 25),
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                child: const Center(
+                  child: ListTile(
+                    title: Text(
+                      '1 Lakh amt debit using malicious link',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontFamily: 'Inter',
+                        color: Colors.white,
+                      ),
+                    ),
+                    subtitle: Text(
+                      'Complain register at 10:25 AM (IST)',
+                      style: TextStyle(fontSize: 13, color: Colors.grey),
+                    ),
+                    trailing: Image(
+                        image: AssetImage(
+                          'src/hackor.png',
+                        ),
+                        fit: BoxFit.cover),
+                  ),
+                ))
           ],
         ));
+  }
+
+  Future<void> showModal(
+    BuildContext context,
+  ) {
+    return showModalBottomSheet(
+        showDragHandle: true,
+        isScrollControlled: true,
+        context: context,
+        builder: (context) {
+          return Container(
+              height: MediaQuery.of(context).size.height * 0.6,
+              width: MediaQuery.of(context).size.width,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+              ),
+              padding: const EdgeInsets.all(3),
+              // alignment: Alignment.center,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Text(
+                    "Messages",
+                    style: TextStyle(
+                        color: Color.fromARGB(255, 0, 170, 255),
+                        fontSize: 34,
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  ListTile(
+                    leading: SvgPicture.asset("assets/message.svg"),
+                    title: const Text(
+                      "Sub: URGENT",
+                      style: TextStyle(
+                          fontFamily: "Poppins",
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: const Text(
+                      "You have new member named DCP Aditya Kumar ...",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 13,
+                          fontFamily: "Poppins"),
+                    ),
+                    trailing: const SizedBox(
+                      width: 50,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Icon(
+                            Icons.close,
+                            color: Colors.red,
+                          ),
+                          Icon(
+                            Icons.check,
+                            color: Colors.green,
+                          )
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ));
+        });
   }
 }

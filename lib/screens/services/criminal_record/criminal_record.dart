@@ -1,7 +1,9 @@
 import 'package:cyber_rakshak/constants.dart';
+import 'package:cyber_rakshak/screens/services/criminal_record/criminal.dart';
 import 'package:cyber_rakshak/widgets/buildTextField.dart';
 import 'package:cyber_rakshak/widgets/button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class CriminalRecord extends StatelessWidget {
   const CriminalRecord({super.key});
@@ -38,11 +40,7 @@ class CriminalRecord extends StatelessWidget {
               ),
               trailing: IconButton(
                 onPressed: () => Navigator.pop(context),
-                icon: const Icon(
-                  Icons.arrow_back,
-                  color: Colors.white,
-                  size: 30,
-                ),
+                icon: SvgPicture.asset("assets/back.svg"),
               ),
             ),
             Container(
@@ -71,7 +69,10 @@ class CriminalRecord extends StatelessWidget {
               margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
               child: CustomButton(
                 str: "Find it",
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => const CriminalFile()));
+                },
               ),
             )
           ],

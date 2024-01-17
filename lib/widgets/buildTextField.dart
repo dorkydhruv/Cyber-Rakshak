@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 Widget buildTextField(
     {double top = 10,
     double h = 50,
+    TextEditingController? textEditingController,
     double left = 20,
     double right = 20,
     double bottom = 20,
@@ -16,6 +17,7 @@ Widget buildTextField(
       bottom: bottom,
     ),
     child: TextField(
+      controller: textEditingController,
       // cursorHeight: 20,
       obscureText: hintText == "Password" ? true : false,
       decoration: InputDecoration(
@@ -23,7 +25,7 @@ Widget buildTextField(
         hintStyle: const TextStyle(
           color: Colors.black45,
           fontFamily: "Poppins",
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w100,
         ),
         filled: true,
         fillColor: Colors.white,

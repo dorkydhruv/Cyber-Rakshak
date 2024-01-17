@@ -18,6 +18,13 @@ class CustomButton extends StatelessWidget {
           bottom: MediaQuery.of(context).size.height * 0.05,
         ),
         decoration: BoxDecoration(
+          boxShadow: const [
+            BoxShadow(
+              offset: Offset(2, 2),
+              blurRadius: 12,
+              color: Colors.blue,
+            )
+          ],
           color: const Color.fromARGB(255, 0, 170, 255),
           borderRadius: BorderRadius.circular(23),
         ),
