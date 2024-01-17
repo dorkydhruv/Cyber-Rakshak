@@ -17,16 +17,12 @@ class FurtherInvestigation extends StatelessWidget {
         child: Stack(
           children: [
             Container(
-              // alignment: Alignment.bo
-              // ,
-
               margin: EdgeInsets.only(
                 top: MediaQuery.of(context).size.height * 0.1,
                 bottom: 20,
                 left: 20,
                 right: 20,
               ),
-
               height: MediaQuery.of(context).size.height * 0.8,
               padding: const EdgeInsets.all(20),
               decoration: const BoxDecoration(

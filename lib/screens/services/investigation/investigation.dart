@@ -1,19 +1,13 @@
 import 'dart:convert';
-import 'dart:io';
-// import 'dart:ffi';
-// import 'dart:typed_data';
-import 'dart:typed_data';
-
 import 'package:cyber_rakshak/constants.dart';
 import 'package:cyber_rakshak/screens/services/investigation/predictions.dart';
 import 'package:cyber_rakshak/widgets/buildTextField.dart';
 import 'package:cyber_rakshak/widgets/button.dart';
-import 'package:flutter/foundation.dart';
-// import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
+
+// import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:tflite_flutter/tflite_flutter.dart';
 
 class Investigation extends StatefulWidget {
   const Investigation({super.key});
@@ -23,53 +17,79 @@ class Investigation extends StatefulWidget {
 }
 
 class _InvestigationState extends State<Investigation> {
-  bool modelLoaded = false;
+  // bool modelLoaded = false;
   final TextEditingController _caseController = TextEditingController();
   final TextEditingController _ticketController = TextEditingController();
-
-  // Interpreter interpreter = Interpreter.fromFile(File("assets/model.tflite"));
-  late Interpreter interpreter;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    loadModel();
-    super.initState();
-  }
-
-  Future<void> loadModel() async {
-    interpreter = await Interpreter.fromAsset('assets/model.tflite');
-    setState(() {
-      modelLoaded = true;
+  List<String> steps = [];
+  String serverUrl = "http://10.0.2.2:5000/predict";
+  Future<List<String>> generateNextWords(
+      String crimeType, List<String> crimeProcessSteps) async {
+    Map<String, dynamic> requestBody = {
+      'crime_type': crimeType,
+      'crime_process_steps': crimeProcessSteps,
+    };
+    String requestBodyJson = await json.encode(requestBody);
+    http.post(Uri.parse(serverUrl),
+        body: requestBodyJson,
+        headers: {'Content-Type': 'application/json'}).then((res) async {
+      if (res.statusCode == 200) {
+        final out = await json.decode(res.body);
+        final lst = out["next_steps"].toString();
+        final finalLst = lst.split(",").toList();
+        setState(() {
+          steps = finalLst;
+        });
+        return finalLst;
+      } else {
+        return [""];
+      }
     });
-    print("Model loadded");
+    return [" "];
   }
+  // Interpreter interpreter = Interpreter.fromFile(File("assets/model.tflite"));
+  // late Interpreter interpreter;
 
-  String runInference(String input) {
-    // Get the input and output tensors from the TensorFlow Lite interpreter
-    final inputTensors = interpreter.getInputTensors();
-    final outputTensors = interpreter.getOutputTensors();
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   loadModel();
+  //   super.initState();
+  // }
 
-    if (inputTensors.isNotEmpty && outputTensors.isNotEmpty) {
-      // Get the types of the input and output tensors
-      final inputType = inputTensors[0].type;
-      final outputType = outputTensors[0].type;
+  // Future<void> loadModel() async {
+  //   print("Model loadded");
+  //   interpreter = await Interpreter.fromAsset('assets/model.tflite');
+  //   print("model where");
+  //   setState(() {
+  //     modelLoaded = true;
+  //   });
+  // }
 
-      final inputBytes = utf8.encode(input);
-      final inputBuffer = Uint8List.fromList(inputBytes);
+  // String runInference(String input) {
+  //   // Get the input and output tensors from the TensorFlow Lite interpreter
+  //   final inputTensors = interpreter.getInputTensors();
+  //   final outputTensors = interpreter.getOutputTensors();
 
-      final outputBufferLength = outputTensors[0].shape.reduce((a, b) => a * b);
-      final outputBuffer = Uint8List(outputBufferLength);
+  //   if (inputTensors.isNotEmpty && outputTensors.isNotEmpty) {
+  //     // Get the types of the input and output tensors
+  //     final inputType = inputTensors[0].type;
+  //     final outputType = outputTensors[0].type;
 
-      interpreter.run(inputBuffer.buffer, outputBuffer.buffer);
+  //     final inputBytes = utf8.encode(input);
+  //     final inputBuffer = Uint8List.fromList(inputBytes);
 
-      final outputString = utf8.decode(outputBuffer);
-      print(outputString);
-      return outputString;
-    }
+  //     final outputBufferLength = outputTensors[0].shape.reduce((a, b) => a * b);
+  //     final outputBuffer = Uint8List(outputBufferLength);
 
-    return '';
-  }
+  //     interpreter.run(inputBuffer.buffer, outputBuffer.buffer);
+
+  //     final outputString = utf8.decode(outputBuffer);
+  //     print(outputString);
+  //     return outputString;
+  //   }
+
+  //   return '';
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -126,26 +146,30 @@ class _InvestigationState extends State<Investigation> {
                     fontSize: 28),
               )),
             ),
-            buildContainer("Case Brief *", 40, _caseController),
+            buildContainer("Attack Type *", 40, _caseController),
             // Row(chi)
-            const Padding(
-              padding: EdgeInsets.all(20.0),
-              child: Text(
-                "---------------------- OR --------------------------",
-                style: TextStyle(
-                    color: Colors.white, fontFamily: "Poppins", fontSize: 12),
-              ),
-            ),
-            buildContainer("Ticket number", 40, _ticketController),
+
+            buildContainer("Steps", 40, _ticketController),
             const SizedBox(
               height: 20,
             ),
             CustomButton(
               str: "Let's Investigate",
-              onPressed: () {
-                runInference(_caseController.text);
+              onPressed: () async {
+                // final response =
+                //     await generateNextWords(_caseController.text, 10);
+                // print(response.split(",").toList());
+                // runInference(_caseController.text);
+                final res = generateNextWords(_caseController.text,
+                    _ticketController.text.split(",").toList());
+                print(steps);
                 Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_) => const Predictions()));
+                    MaterialPageRoute(builder: (_) => Predictions(lst: steps)));
+                // Navigator.of(context).push(MaterialPageRoute(
+                //     builder: (_) =>
+                //         Predictions(casebrief: _caseController.text)));
+                // Navigator.of(context).push(
+                //     MaterialPageRoute(builder: (_) => const Predictions()));
               },
             )
           ],

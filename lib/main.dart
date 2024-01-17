@@ -23,6 +23,6 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)
               .copyWith(background: primaryColor),
         ),
-        home: const Investigation());
+        home: const GetStarted());
   }
 }

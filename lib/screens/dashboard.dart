@@ -134,35 +134,6 @@ class DashBoard extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-                margin: const EdgeInsets.all(30),
-                height: MediaQuery.of(context).size.height * 0.15,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 25, 25, 25),
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child: const Center(
-                  child: ListTile(
-                    title: Text(
-                      '1 Lakh amt debit using malicious link',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontFamily: 'Inter',
-                        color: Colors.white,
-                      ),
-                    ),
-                    subtitle: Text(
-                      'Complain register at 10:25 AM (IST)',
-                      style: TextStyle(fontSize: 13, color: Colors.grey),
-                    ),
-                    trailing: Image(
-                        image: AssetImage(
-                          'src/hackor.png',
-                        ),
-                        fit: BoxFit.cover),
-                  ),
-                ))
           ],
         ));
   }
