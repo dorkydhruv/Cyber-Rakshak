@@ -4,13 +4,17 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Problem Statement:
+Develop a cyber crime mapping system that will co-relate repetitive crime incidents, and criminal patterns & and
+track repeat offenders, by integrating data from various sources and utilizing data analytics to track various crime
+incidents. It will provide useful insights into crime mapping that can help in implementing preventive measures
+accordingly. It can also ensure efficient monitoring of repeat offenders.
+Solution:
+1. User Authentication
+2. Case Management
+3. Data Integration
+4. Crime Mapping and Visualization
+5. Predictive Modeling
+6. Repeat Offender Monitoring
+7. Evidence Management
+8. Investigation Tools
