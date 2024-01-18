@@ -17,7 +17,6 @@ class _PredictionsState extends State<Predictions> {
   int i = 0;
   @override
   void initState() {
-    // TODO: implement initState
     setState(() {
       i++;
     });
@@ -35,28 +34,34 @@ class _PredictionsState extends State<Predictions> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            ListTile(
-              leading: CircleAvatar(
-                  radius: 30,
-                  child: ClipRRect(
-                      borderRadius: BorderRadius.circular(30),
-                      child: const Image(image: AssetImage("assets/ips.png")))),
-              title: const Text(
-                "Investigation officer ",
-                style: TextStyle(
-                    fontSize: 16, color: Colors.grey, fontFamily: "Poppins"),
-              ),
-              subtitle: const Text(
-                'IPS Shruti',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Poppins',
-                    fontSize: 28),
-              ),
-              trailing: IconButton(
-                onPressed: () => Navigator.pop(context),
-                icon: SvgPicture.asset("assets/back.svg"),
+            GestureDetector(
+              onTap: () => setState(() {
+                i++;
+              }),
+              child: ListTile(
+                leading: CircleAvatar(
+                    radius: 30,
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(30),
+                        child:
+                            const Image(image: AssetImage("assets/ips.png")))),
+                title: const Text(
+                  "Investigation officer ",
+                  style: TextStyle(
+                      fontSize: 16, color: Colors.grey, fontFamily: "Poppins"),
+                ),
+                subtitle: const Text(
+                  'IPS Shruti',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Poppins',
+                      fontSize: 28),
+                ),
+                trailing: IconButton(
+                  onPressed: () => Navigator.pop(context),
+                  icon: SvgPicture.asset("assets/back.svg"),
+                ),
               ),
             ),
             const Text(
@@ -69,7 +74,7 @@ class _PredictionsState extends State<Predictions> {
               ),
             ),
             Container(
-                margin: EdgeInsets.only(top: 30),
+                margin: const EdgeInsets.only(top: 30),
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height * 0.8,
                 decoration: const BoxDecoration(

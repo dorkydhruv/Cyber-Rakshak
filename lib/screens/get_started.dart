@@ -25,7 +25,7 @@ class GetStarted extends StatelessWidget {
             dense: true,
             // visualDensity: VisualDensity(vertical: -5.0),
             title: Text(
-              "Cyber Rakshak",
+              "CyberRakshak",
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.white,
