@@ -47,7 +47,10 @@ class DashBoard extends StatelessWidget {
                       onPressed: () {
                         showModal(context);
                       },
-                      icon: SvgPicture.asset("assets/back.svg"),
+                      icon: const Icon(
+                        Icons.notifications,
+                        color: Colors.white,
+                      ),
                     ),
                     const CircleAvatar(
                       radius: 25,
