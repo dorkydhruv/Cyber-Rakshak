@@ -21,7 +21,8 @@ class _InvestigationState extends State<Investigation> {
   final TextEditingController _caseController = TextEditingController();
   final TextEditingController _ticketController = TextEditingController();
   List<String> steps = [];
-  String serverUrl = "http://10.0.2.2:5000/predict";
+  String serverUrl =
+      "https://90b94aa2-c396-481b-8277-5e7dfbb2076f-00-2ok1lzli3fzbc.pike.replit.dev/predict";
   Future<List<String>> generateNextWords(
       String crimeType, List<String> crimeProcessSteps) async {
     Map<String, dynamic> requestBody = {

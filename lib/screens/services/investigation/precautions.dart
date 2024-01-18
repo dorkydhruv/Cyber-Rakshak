@@ -1,12 +1,18 @@
 import 'package:cyber_rakshak/constants.dart';
+import 'package:cyber_rakshak/screens/services/investigation/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class Predictions extends StatelessWidget {
-  const Predictions({super.key});
+class Precautions extends StatelessWidget {
+  Precautions({super.key});
+
+  final precautions = text.split("\n");
 
   @override
   Widget build(BuildContext context) {
+    print(precautions);
+    precautions.shuffle();
+    final myList = precautions.sublist(0, 5);
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 20,
@@ -41,7 +47,7 @@ class Predictions extends StatelessWidget {
               ),
             ),
             const Text(
-              "Prediction",
+              "Precautions",
               style: TextStyle(
                 fontFamily: "Poppins",
                 fontSize: 48,
@@ -64,6 +70,40 @@ class Predictions extends StatelessWidget {
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(60),
                       topRight: Radius.circular(60))),
+              child: ListView.builder(
+                itemBuilder: (c, index) {
+                  return Container(
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              blurRadius: 10,
+                              offset: const Offset(0, 3))
+                        ]),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            myList[index],
+                            style: TextStyle(
+                              fontFamily: "Poppins",
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                itemCount: myList.length,
+              ),
             ),
           ],
         ),

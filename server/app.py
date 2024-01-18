@@ -36,6 +36,11 @@ def predict_next_steps(crime_type, crime_process_steps):
 
     return next_steps
 
+
+@app.route('/')
+def index():
+    return "HI"
+
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
@@ -59,4 +64,4 @@ def predict():
         return jsonify({'error': f'An error occurred: {str(e)}'}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0')

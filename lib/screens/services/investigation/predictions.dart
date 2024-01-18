@@ -1,5 +1,7 @@
 import 'package:cyber_rakshak/constants.dart';
 import 'package:cyber_rakshak/screens/services/investigation/constants.dart';
+import 'package:cyber_rakshak/screens/services/investigation/precautions.dart';
+import 'package:cyber_rakshak/widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -110,6 +112,13 @@ class _PredictionsState extends State<Predictions> {
             //
           ],
         ),
+      ),
+      floatingActionButton: CustomButton(
+        str: "Precautions",
+        onPressed: () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (_) => Precautions()));
+        },
       ),
     );
   }

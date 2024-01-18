@@ -1,6 +1,7 @@
 import 'package:cyber_rakshak/constants.dart';
 import 'package:cyber_rakshak/screens/dashboard.dart';
 import 'package:cyber_rakshak/screens/get_started.dart';
+import 'package:cyber_rakshak/screens/services/investigation/precautions.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -19,6 +20,6 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)
               .copyWith(background: primaryColor),
         ),
-        home: const GetStarted());
+        home: GetStarted());
   }
 }
