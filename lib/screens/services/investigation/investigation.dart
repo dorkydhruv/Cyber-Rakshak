@@ -12,28 +12,31 @@ import 'package:flutter_svg/svg.dart';
 
 class Investigation extends StatefulWidget {
   const Investigation({super.key});
-
   @override
   State<Investigation> createState() => _InvestigationState();
 }
 
 class _InvestigationState extends State<Investigation> {
-  // bool modelLoaded = false;
   final TextEditingController _caseController = TextEditingController();
   final TextEditingController _ticketController = TextEditingController();
   List<String> steps = [];
   String str = "";
-  String serverUrl =
-      "https://90b94aa2-c396-481b-8277-5e7dfbb2076f-00-2ok1lzli3fzbc.pike.replit.dev/predict";
-  String url =
-      "https://3c643283-5b45-45a3-8372-298ee7050254-00-3sdgfvow0uxr.pike.replit.dev/predict";
+
+  //change the urls on deployment
+  //for android emulator ip is 10.0.2.2
+  //for real device ip is the ip of the server
+
+  //for multiple outputs
+  String serverUrl = "http://10.0.2.2:5000/predict";
+  //for single outputs
+  String url = "http://10.0.2.2:8080/predict";
   Future<List<String>> generateNextWords(
       String crimeType, List<String> crimeProcessSteps) async {
     Map<String, dynamic> requestBody = {
       'crime_type': crimeType,
       'crime_process_steps': crimeProcessSteps,
     };
-    String requestBodyJson = await json.encode(requestBody);
+    String requestBodyJson = json.encode(requestBody);
     http.post(Uri.parse(serverUrl),
         body: requestBodyJson,
         headers: {'Content-Type': 'application/json'}).then((res) async {
@@ -63,10 +66,9 @@ class _InvestigationState extends State<Investigation> {
         body: requestBodyJson,
         headers: {'Content-Type': 'application/json'}).then((res) async {
       if (res.statusCode == 200) {
-        print(res.body);
         final out = await json.decode(res.body);
         final lst = out['out'].toString();
-        print(lst);
+
         setState(() {
           str = lst;
         });
@@ -143,32 +145,21 @@ class _InvestigationState extends State<Investigation> {
             CustomButton(
               str: "Let's Investigate",
               onPressed: () async {
-                // final response =
-                //     await generateNextWords(_caseController.text, 10);
-                // print(response.split(",").toList());
-                // runInference(_caseController.text);
-                final res = await generateNextWords(_caseController.text,
-                    _ticketController.text.split(",").toList());
-                print(steps);
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_) => Predictions(lst: steps)));
-                // Navigator.of(context).push(MaterialPageRoute(
-                //     builder: (_) =>
-                //         Predictions(casebrief: _caseController.text)));
-                // Navigator.of(context).push(
-                //     MaterialPageRoute(builder: (_) => const Predictions()));
+                generateNextWords(_caseController.text,
+                        _ticketController.text.split(",").toList())
+                    .then((value) => Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (_) => Predictions(lst: steps))));
               },
             ),
             CustomButton(
               str: "Single Ouput",
               onPressed: () async {
-                final out = await generateString(
-                    _caseController.text, _ticketController.text);
-                print(str);
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (_) => FurtherInvestigation(data: str)));
+                generateString(_caseController.text, _ticketController.text)
+                    .then((value) => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => FurtherInvestigation(data: str))));
               },
             )
           ],

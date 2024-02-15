@@ -6,7 +6,7 @@ from sklearn.neighbors import NearestNeighbors
 app = Flask(__name__)
 
 # Load the data and set up the machine learning model
-data = pd.read_csv('/home/dhruv/Projects/cyber_rakshak/server/cyberCrime.csv')
+data = pd.read_csv('cyberCrime.csv')
 crime_types = data.iloc[:, 1:2]
 crime_types = crime_types.values.tolist()
 crime_process_steps = data.iloc[:, 2:].values.tolist()
