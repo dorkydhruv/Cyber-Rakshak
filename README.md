@@ -1,6 +1,6 @@
 # cyber_rakshak
 
-A new Flutter project.
+A new Flutter project on investigating Cyber crimes
 
 ## Getting Started
 
