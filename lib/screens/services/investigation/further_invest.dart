@@ -86,7 +86,7 @@ class FurtherInvestigation extends StatelessWidget {
                 ),
                 Container(
                   color: Colors.white,
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   child: Text(data,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
@@ -128,7 +128,7 @@ class FurtherInvestigation extends StatelessWidget {
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
                                 "${index + 1}. ${list[index]}",
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontFamily: "Poppins",
                                   fontSize: 12,
                                   color: Colors.black,

@@ -19,17 +19,19 @@ class Investigation extends StatefulWidget {
 class _InvestigationState extends State<Investigation> {
   final TextEditingController _caseController = TextEditingController();
   final TextEditingController _ticketController = TextEditingController();
-  List<String> steps = [];
-  String str = "";
+  // List<String> steps = [];
+  // String str = "";
 
   //change the urls on deployment
   //for android emulator ip is 10.0.2.2
   //for real device ip is the ip of the server
 
   //for multiple outputs
-  String serverUrl = "http://10.0.2.2:5000/predict";
+  String serverUrl =
+      "https://cb11ab66-0c16-496a-9e2b-3defcdec7b77-00-1nlje67f24bd0.riker.repl.co/predict";
   //for single outputs
-  String url = "http://10.0.2.2:8080/predict";
+  String url =
+      "https://609ef7d2-1763-4181-88e3-fd8de9fd0c57-00-1y9ivt6u336lm.riker.repl.co/predict";
   Future<List<String>> generateNextWords(
       String crimeType, List<String> crimeProcessSteps) async {
     Map<String, dynamic> requestBody = {
@@ -37,22 +39,12 @@ class _InvestigationState extends State<Investigation> {
       'crime_process_steps': crimeProcessSteps,
     };
     String requestBodyJson = json.encode(requestBody);
-    http.post(Uri.parse(serverUrl),
-        body: requestBodyJson,
-        headers: {'Content-Type': 'application/json'}).then((res) async {
-      if (res.statusCode == 200) {
-        final out = await json.decode(res.body);
-        final lst = out["next_steps"].toString();
-        final finalLst = lst.split(",").toList();
-        setState(() {
-          steps = finalLst;
-        });
-        return finalLst;
-      } else {
-        return [""];
-      }
-    });
-    return [" "];
+    final res = await http.post(Uri.parse(serverUrl),
+        body: requestBodyJson, headers: {'Content-Type': 'application/json'});
+    final out = await json.decode(res.body);
+    final lst = out["next_steps"].toString();
+    final finalLst = lst.split(",").toList();
+    return finalLst;
   }
 
   Future<String> generateString(
@@ -61,23 +53,12 @@ class _InvestigationState extends State<Investigation> {
       'crime_type': crimeType,
       'steps': crimeProcessSteps,
     };
-    String requestBodyJson = await json.encode(requestBody);
-    http.post(Uri.parse(url),
-        body: requestBodyJson,
-        headers: {'Content-Type': 'application/json'}).then((res) async {
-      if (res.statusCode == 200) {
-        final out = await json.decode(res.body);
-        final lst = out['out'].toString();
-
-        setState(() {
-          str = lst;
-        });
-        return lst;
-      } else {
-        return "";
-      }
-    });
-    return "";
+    String requestBodyJson = json.encode(requestBody);
+    final res = await http.post(Uri.parse(url),
+        body: requestBodyJson, headers: {'Content-Type': 'application/json'});
+    final out = await json.decode(res.body);
+    final lst = out['out'].toString();
+    return lst;
   }
 
   @override
@@ -147,9 +128,13 @@ class _InvestigationState extends State<Investigation> {
               onPressed: () async {
                 generateNextWords(_caseController.text,
                         _ticketController.text.split(",").toList())
-                    .then((value) => Navigator.of(context).push(
-                        MaterialPageRoute(
-                            builder: (_) => Predictions(lst: steps))));
+                    .then(
+                  (value) => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => Predictions(lst: value),
+                    ),
+                  ),
+                );
               },
             ),
             CustomButton(
@@ -159,7 +144,8 @@ class _InvestigationState extends State<Investigation> {
                     .then((value) => Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (_) => FurtherInvestigation(data: str))));
+                            builder: (_) =>
+                                FurtherInvestigation(data: value))));
               },
             )
           ],

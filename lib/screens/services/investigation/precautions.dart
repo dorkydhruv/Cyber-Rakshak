@@ -10,7 +10,6 @@ class Precautions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(precautions);
     precautions.shuffle();
     final myList = precautions.sublist(0, 5);
     return Scaffold(
@@ -56,7 +55,7 @@ class Precautions extends StatelessWidget {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: 30),
+              margin: const EdgeInsets.only(top: 30),
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height * 0.8,
               decoration: const BoxDecoration(
@@ -90,7 +89,7 @@ class Precautions extends StatelessWidget {
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
                             myList[index],
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontFamily: "Poppins",
                               fontSize: 16,
                               color: Colors.black,

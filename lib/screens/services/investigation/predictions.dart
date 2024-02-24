@@ -14,17 +14,9 @@ class Predictions extends StatefulWidget {
 }
 
 class _PredictionsState extends State<Predictions> {
-  int i = 0;
-  @override
-  void initState() {
-    setState(() {
-      i++;
-    });
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
+    widget.lst[0] = widget.lst[0].substring(1);
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 20,
@@ -35,9 +27,7 @@ class _PredictionsState extends State<Predictions> {
         child: Column(
           children: [
             GestureDetector(
-              onTap: () => setState(() {
-                i++;
-              }),
+              onTap: () {},
               child: ListTile(
                 leading: CircleAvatar(
                     radius: 30,
@@ -100,11 +90,11 @@ class _PredictionsState extends State<Predictions> {
                                 blurRadius: 10,
                                 offset: const Offset(0, 3))
                           ]),
-                      margin: EdgeInsets.all(8),
-                      padding: EdgeInsets.only(top: 10),
+                      margin: const EdgeInsets.all(8),
+                      padding: const EdgeInsets.only(top: 10),
                       child: ListTile(
                         title: Text(widget.lst[index],
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontFamily: "Poppins",
                                 fontSize: 20,
                                 color: Colors.black,

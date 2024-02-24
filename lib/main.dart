@@ -1,8 +1,6 @@
 import 'package:cyber_rakshak/constants.dart';
-import 'package:cyber_rakshak/screens/dashboard.dart';
 import 'package:cyber_rakshak/screens/get_started.dart';
-import 'package:cyber_rakshak/screens/services/investigation/further_invest.dart';
-import 'package:cyber_rakshak/screens/services/investigation/precautions.dart';
+import 'package:cyber_rakshak/screens/services/investigation/investigation.dart';
 import 'package:flutter/material.dart';
 
 void main() {
