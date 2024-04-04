@@ -1,4 +1,4 @@
-# cyber_rakshak
+# Cyber-Rakshak
 
 A new Flutter project on investigating Cyber crimes
 
@@ -16,3 +16,5 @@ Solution:
 6. Repeat Offender Monitoring
 7. Evidence Management
 8. Investigation Tools
+
+[SOULTION PDF](https://github.com/dorkydhruv/Cyber-Rakshak/blob/master/Hackathon%20assets/Cyber%20Rakshak.pdf)
