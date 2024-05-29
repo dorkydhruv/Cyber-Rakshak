@@ -27,11 +27,9 @@ class _InvestigationState extends State<Investigation> {
   //for real device ip is the ip of the server
 
   //for multiple outputs
-  String serverUrl =
-      "https://cb11ab66-0c16-496a-9e2b-3defcdec7b77-00-1nlje67f24bd0.riker.repl.co/predict";
+  String serverUrl = "http://10.0.2.2:5000/predict";
   //for single outputs
-  String url =
-      "https://609ef7d2-1763-4181-88e3-fd8de9fd0c57-00-1y9ivt6u336lm.riker.repl.co/predict";
+  String url = "http://10.0.2.2:8080/predict";
   Future<List<String>> generateNextWords(
       String crimeType, List<String> crimeProcessSteps) async {
     Map<String, dynamic> requestBody = {

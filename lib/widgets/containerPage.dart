@@ -4,7 +4,8 @@ class ContainerPage extends StatefulWidget {
   final String img;
   final String str;
   final VoidCallback? onTap;
-  ContainerPage({super.key, required this.img, required this.str, this.onTap});
+  const ContainerPage(
+      {super.key, required this.img, required this.str, this.onTap});
 
   @override
   State<ContainerPage> createState() => _ContainerPageState();
@@ -36,7 +37,7 @@ class _ContainerPageState extends State<ContainerPage> {
                   ? Center(
                       child: Text(
                         widget.str,
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.white,
                             fontSize: 36,
                             fontFamily: "Poppins",

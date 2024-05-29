@@ -72,7 +72,7 @@ class CriminalFile extends StatelessWidget {
                 children: [
                   buildContainer(title: "Full Name", desc: "Alok Kumar Mishra"),
                   buildContainer(
-                      title: "Father\’s Name", desc: "Ram Kumar Mishra"),
+                      title: "Father’s Name", desc: "Ram Kumar Mishra"),
                   buildContainer(title: "Date of Birth", desc: "09/12/1980"),
                   buildContainer(
                       title: "Permanent Address", desc: "Muradnagar"),

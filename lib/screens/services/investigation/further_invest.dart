@@ -105,7 +105,7 @@ class FurtherInvestigation extends StatelessWidget {
                         fontSize: 30,
                         fontFamily: "Poppins",
                         fontWeight: FontWeight.bold)),
-                Container(
+                SizedBox(
                   height: MediaQuery.of(context).size.height * 0.5,
                   width: MediaQuery.of(context).size.width,
                   child: ListView.builder(
