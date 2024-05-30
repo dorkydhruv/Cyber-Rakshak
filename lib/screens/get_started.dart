@@ -1,4 +1,3 @@
-import 'package:cyber_rakshak/constants.dart';
 import 'package:cyber_rakshak/screens/nav_screens.dart';
 import 'package:cyber_rakshak/widgets/button.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +8,6 @@ class GetStarted extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: primaryColor,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.center,

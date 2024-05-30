@@ -17,6 +17,12 @@ Widget buildTextField(
       bottom: bottom,
     ),
     child: TextField(
+      cursorColor: Colors.black,
+      style: TextStyle(
+        color: Colors.black,
+        fontFamily: "Poppins",
+        fontWeight: FontWeight.w100,
+      ),
       controller: textEditingController,
       // cursorHeight: 20,
       obscureText: hintText == "Password" ? true : false,

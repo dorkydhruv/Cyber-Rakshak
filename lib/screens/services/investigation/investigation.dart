@@ -65,7 +65,6 @@ class _InvestigationState extends State<Investigation> {
       appBar: AppBar(
         toolbarHeight: 20,
         elevation: 0,
-        backgroundColor: primaryColor,
       ),
       body: SingleChildScrollView(
         child: Column(

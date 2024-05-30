@@ -1,6 +1,5 @@
 import 'package:cyber_rakshak/constants.dart';
 import 'package:cyber_rakshak/screens/get_started.dart';
-import 'package:cyber_rakshak/screens/services/investigation/investigation.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,10 +14,10 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Cyber Rakshak',
         theme: ThemeData(
-          useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)
-              .copyWith(surface: primaryColor),
-        ),
+            useMaterial3: true,
+            colorScheme: const ColorScheme.dark(
+              primary: primaryColor,
+            )),
         home: const GetStarted());
   }
 }

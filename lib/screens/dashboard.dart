@@ -1,4 +1,3 @@
-import 'package:cyber_rakshak/constants.dart';
 import 'package:cyber_rakshak/screens/services/criminal_record/criminal_record.dart';
 import 'package:cyber_rakshak/screens/services/investigation/investigation.dart';
 import 'package:cyber_rakshak/screens/services/new_case.dart';
@@ -15,7 +14,6 @@ class DashBoard extends StatelessWidget {
         appBar: AppBar(
           toolbarHeight: 20,
           elevation: 0,
-          backgroundColor: primaryColor,
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
